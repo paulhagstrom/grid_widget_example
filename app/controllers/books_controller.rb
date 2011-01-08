@@ -12,8 +12,20 @@ class BooksController < BaseController
       }
       c.includes = :author
       c.add_column('title', :width => 150, :sortable => true, :open_panel => true)
-      c.add_column('price', :width => 150, :sortable => true)
+      c.add_column('price', :width => 150, :sortable => true, :custom => :custom_price)
       c.add_column('author.name', :width => 150, :sortable => true)
+      c.add_filter_group 'prices', :name => 'Price categories', :exclusive => true, :columns => 2 do |f|
+        f.add_filter 'cheap', :where => ["price < 50"], :default => true
+        f.add_filter 'pricy', :where => ["price >= 50"]
+      end
+      c.add_filter_group 'authors', :where => lambda {|x| {:author_id => x }}, :columns => 4 do |f|
+        Author.all.each do |author|
+          f.add_filter author.id, author.name
+        end
+      end
+      def c.custom_price(price)
+        "$#{price}"
+      end
     end
   end
     
