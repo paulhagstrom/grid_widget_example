@@ -1,0 +1,14 @@
+<table class="edit_table">
+	<tr>
+		<td>Title</td>
+		<td><%= text_field_tag 'record[title]', @record.title %></td>
+	</tr>
+	<tr>
+		<td>Author</td>
+		<td><%= select_tag 'record[author_id]', options_from_collection_for_select(Author.all, 'id', 'name', @record.author_id) %></td>
+	</tr>
+	<tr>
+		<td>Price</td>
+		<td><%= text_field_tag 'record[price]', @record.price %></td>
+	</tr>
+</table>

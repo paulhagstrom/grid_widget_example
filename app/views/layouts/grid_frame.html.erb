@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Books and authors</title>
+	<%= stylesheet_link_tag 'grid_widget/backend' %>
+	<%= stylesheet_link_tag 'grid_widget/jquery-ui-1.8.7.custom' %>
+	<%= stylesheet_link_tag 'grid_widget/ui.jqgrid' %>
+	
+	<%= javascript_include_tag 'grid_widget/jquery-1.4.4.min' %>
+	<%= javascript_include_tag 'grid_widget/jquery-ui-1.8.7.custom.min' %>
+	<%= javascript_include_tag 'grid_widget/rails' %>
+	<%= javascript_include_tag 'grid_widget/grid.locale-en' %>
+	<%= javascript_include_tag 'grid_widget/jquery.jqGrid.min' %>
+	<%= csrf_meta_tag %>
+	<%= yield :head %>
+</head>
+<body>
+<table class="layout_table">
+	<tr>
+		<td style="width:150px">
+			<p class="page_identifier">Books/Authors<p>
+			<div class="nav">
+				<%= render '/grid_sidenav' %>
+			</div>
+		</td>
+		<td>
+			<p class="notice"><%= notice %></p>
+			<p class="alert"><%= alert %></p>
+			<%= yield %>
+		</td>
+	</tr>
+</table>
+</body>
+</html>
