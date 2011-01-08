@@ -26,7 +26,7 @@ class BaseController < ApplicationController
   # render inline by calling super widget_name from a subclassed controller.
   # If no widget name is provided, it will guess that the widget is called like
   # the un-namespaced singularized controller plus _widget.
-  # That is, admin/people becomes person_widget
+  # That is, admin/people becomes person_widget.
   def index(widget = nil)
     if widget
       render :layout => 'grid_frame', :inline => "<%= render_widget '#{widget}' %>"
