@@ -15,7 +15,7 @@ class AuthorsController < BaseController
   end
     
   def index
-    super 'author_widget'
+    super
   end
   
 end

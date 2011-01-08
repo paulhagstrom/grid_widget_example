@@ -18,7 +18,7 @@ class BooksController < BaseController
   end
     
   def index
-    super 'book_widget'
+    super
   end
   
 end

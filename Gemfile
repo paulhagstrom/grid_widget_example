@@ -1,9 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'apotomo', '1.0.1', :require => 'apotomo'
-gem 'cells', '3.4.4'
-gem 'onfire', '0.1.1'
 gem 'jquery-rails', '>=0.2.6'
+
+gem 'apotomo', '~>1.0', :require => 'apotomo'
 
 gem 'rails', '3.0.3'
 
