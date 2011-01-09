@@ -7,16 +7,16 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 authors = Author.create([
-  {:name => 'Noam Chomsky'},
-  {:name => 'Andrew Carnie'},
-  {:name => 'Mario Puzo'},
-  {:name => 'William Goldman'},
+  {:name => 'Chomsky, Noam'},
+  {:name => 'Carnie, Andrew'},
+  {:name => 'Puzo, Mario'},
+  {:name => 'Goldman, William'},
   ]).inject({}) {|h,author| h[author.name] = author.id; h}
 
 books = Book.create([
-  {:title => "The Minimalist Program", :price => "40.00", :author_id => authors['Noam Chomsky'], :read => true},
-  {:title => "Lectures on Government and Binding", :price => "60.00", :author_id => authors['Noam Chomsky'], :read => false},
-  {:title => "Syntax", :price => "40.00", :author_id => authors['Andrew Carnie'], :read => true},
-  {:title => "The Godfather", :price => "8.00", :author_id => authors['Mario Puzo'], :read => false},
-  {:title => "The Princess Bride", :price => "8.00", :author_id => authors['William Goldman'], :read => true},
+  {:title => "The Minimalist Program", :price => 40, :author_id => authors['Chomsky, Noam'], :read => true},
+  {:title => "Lectures on Government and Binding", :price => 60, :author_id => authors['Chomsky, Noam'], :read => false},
+  {:title => "Syntax", :price => 40, :author_id => authors['Carnie, Andrew'], :read => true},
+  {:title => "The Godfather", :price => 8, :author_id => authors['Puzo, Mario'], :read => false},
+  {:title => "The Princess Bride", :price => 8, :author_id => authors['Goldman, William'], :read => true},
   ]).inject({}) {|h,book| h[book.title] = book.id; h}
