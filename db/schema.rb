@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110108084238) do
+ActiveRecord::Schema.define(:version => 20110109054046) do
 
   create_table "authors", :force => true do |t|
     t.string   "name"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(:version => 20110108084238) do
     t.integer  "author_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "read"
   end
 
 end

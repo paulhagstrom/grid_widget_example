@@ -1,5 +1,6 @@
 class BooksController < BaseController
-
+  helper :books
+  
   has_widgets do |root|
     root << grid_edit_widget('book') do |c|
       c.grid_options = {
@@ -14,9 +15,10 @@ class BooksController < BaseController
       c.add_column('title', :width => 150, :sortable => true, :open_panel => true)
       c.add_column('price', :width => 150, :sortable => true, :custom => :custom_price)
       c.add_column('author.name', :width => 150, :sortable => true)
+      c.add_column('read', :width => 50, :sortable => true, :toggle => true, :custom => :custom_check)
       c.add_filter_group 'prices', :name => 'Price categories', :exclusive => true, :columns => 2 do |f|
-        f.add_filter 'cheap', :where => ["price < 50"], :default => true
-        f.add_filter 'pricy', :where => ["price >= 50"]
+        f.add_filter 'cheap', :where => ["cast(price as integer) < 50"], :default => true
+        f.add_filter 'pricy', :where => ["cast(price as integer) >= 50"]
       end
       c.add_filter_group 'authors', :where => lambda {|x| {:author_id => x }}, :columns => 4 do |f|
         Author.all.each do |author|
