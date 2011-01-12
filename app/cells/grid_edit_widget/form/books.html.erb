@@ -3,19 +3,19 @@
 	<colgroup style="width:300px;"></colgroup>
 	<tr>
 		<td>Title</td>
-		<td><%= text_field_tag 'record[title]', @record.title %></td>
+		<td><%= text_field_tag "#{container}[title]", record.title %></td>
 	</tr>
 	<tr>
 		<td>Author</td>
-		<td><%= select_tag 'record[author_id]', options_from_collection_for_select(Author.all, 'id', 'name', @record.author_id) %></td>
+		<td><%= select_tag "#{container}[author_id]", options_from_collection_for_select(Author.all, 'id', 'name', record.author_id) %></td>
 	</tr>
 	<tr>
 		<td>Price</td>
-		<td><%= text_field_tag 'record[price]', @record.price %></td>
+		<td><%= text_field_tag "#{container}[price]", record.price %></td>
 	</tr>
 	<tr>
 		<td>Read?</td>
-		<td><%= hidden_field_tag 'record[read]', '0' %><%= check_box_tag 'record[read]', '1', @record.read %></td>
+		<td><%= hidden_field_tag "#{container}[read]", '0' %><%= check_box_tag 'record[read]', '1', record.read %></td>
 	</tr>
 </table>
 <%= helper_to_render_a_little_checkmark('little_checkmark') %>
