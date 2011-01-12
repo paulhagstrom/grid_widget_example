@@ -4,7 +4,7 @@ https://github.com/paulhagstrom/grid_widget
 
 To make the example go:
 
-git clone https://github.com/paulhagstrom/grid_widget_example
+git clone git://github.com/paulhagstrom/grid_widget_example.git
 cd grid_widget_example
 git submodule init
 git submodule update
