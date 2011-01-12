@@ -31,6 +31,7 @@ class BaseController < ApplicationController
     if widget
       render :layout => 'grid_frame', :inline => "<%= render_widget '#{widget}' %>"
     else
+      # TODO consider trying to use self.class.name.underscore.gsub(/_controller$/,'') here, if it works
       render :layout => 'grid_frame',
         :inline => "<%= render_widget '#{params[:controller].split('/').last.singularize}_widget' %>"
     end
