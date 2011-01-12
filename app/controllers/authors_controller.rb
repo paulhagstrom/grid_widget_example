@@ -1,6 +1,26 @@
 class AuthorsController < BaseController
 
   has_widgets do |root|
+    book_widget = grid_edit_widget('book') do |cc|
+      cc.grid_options = {
+        :title => 'Books',
+        # :rows => 20,
+        :height => 150,
+        # :pager => {:rows => 20, :rows_options => ['20','50','100']},
+        :del_button => true,
+        :add_button => true,
+      }
+      cc.add_column('title', :width => 150, :sortable => true, :open_panel => true, :custom => :custom_title)
+      cc.add_column('price', :label => 'Price (USD)', :width => 75, :sortable => true, :custom => :custom_price)
+      cc.add_column('read', :width => 50, :sortable => true, :toggle => true, :custom => :custom_check)
+      def cc.custom_price(price)
+        '<span style="font-family:monospace;">' + sprintf("%7.2f", price) + '</span>'
+      end
+      def cc.custom_title(title)
+        '<em>' + title + '</em>'
+      end
+      cc.form_template = 'author_books'
+    end
     root << grid_edit_widget('author') do |c|
       c.grid_options = {
         :title => 'Authors',
@@ -10,7 +30,8 @@ class AuthorsController < BaseController
         :del_button => true,
         :add_button => true,
       }
-      c.add_column('name', :width => 150, :sortable => true, :open_panel => true)
+      c.add_column('name', :width => 300, :sortable => true, :open_panel => true)
+      c.embed_widget lambda {|x| {:author_id => x}}, book_widget
     end
   end
     

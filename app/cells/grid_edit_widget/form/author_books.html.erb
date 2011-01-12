@@ -1,0 +1,16 @@
+<table class="edit_table">
+	<colgroup style="width:100px;"></colgroup>
+	<colgroup style="width:300px;"></colgroup>
+	<tr>
+		<td>Title</td>
+		<td><%= text_field_tag "#{container}[title]", record.title %></td>
+	</tr>
+	<tr>
+		<td>Price</td>
+		<td><%= text_field_tag "#{container}[price]", record.price %></td>
+	</tr>
+	<tr>
+		<td>Read?</td>
+		<td><%= hidden_field_tag "#{container}[read]", '0' %><%= check_box_tag 'record[read]', '1', record.read %></td>
+	</tr>
+</table>

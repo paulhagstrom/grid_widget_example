@@ -2,5 +2,8 @@
 	<tr>
 		<td>Name</td>
 		<td><%= text_field_tag "#{container}[name]", record.name %></td>
-	</tr>
+	</tr>	
 </table>
+<% content_for :after_form do %>
+	<%= rendered_children['book_widget'] %>
+<% end %>
