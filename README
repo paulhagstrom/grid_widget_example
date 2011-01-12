@@ -1,7 +1,21 @@
-To make this go, you should be able to
+This is a demonstration/testbed for the grid_widget plugin for Apotomo/jqGrid (Rails 3)
 
+https://github.com/paulhagstrom/grid_widget
+
+To make the example go:
+
+git clone https://github.com/paulhagstrom/grid_widget_example
+cd grid_widget_example
 git submodule init
 git submodule update
-(to pull in the grid_edit plugin, which is a submodule)
+bundle install
+rake db:reset
+rails s
 
-Nothing very fancy at the moment.  I will try to add more examples (filters, toggles, etc.)
+browse to http://localhost:3000/authors
+
+I will probably be updating this more often than I update the readme, but I will try
+to keep it in sync with the plugin.
+
+It demonstrates at least how to embed one GridEditWidget inside another one's form,
+and how to set various options, use filters, etc.  In lieu of much real documentation.
