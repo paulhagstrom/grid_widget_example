@@ -32,6 +32,14 @@ class AuthorsController < BaseController
       }
       c.add_column('name', :width => 300, :sortable => true, :open_panel => true)
       c.embed_widget lambda {|x| {:author_id => x}}, book_widget
+      # something like this would also work (useful if the x is something else's id)
+      # c.embed_widget lambda {|x| {:author_id => Author.find(x).id}}, book_widget
+      # The following would be how you add something to fill in values in an empty record,
+      # e.g., to store the current user as the creator of the new record.
+      # def c.before_add(record)
+      #   record.user = @cell.parent_controller.user
+      #   record
+      # end
     end
   end
     
