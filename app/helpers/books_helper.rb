@@ -1,5 +1,5 @@
 module BooksHelper
-  module ::AppSupport
+  module ::GridWidget::AppSupport
     module ControllerMethods
     end
 

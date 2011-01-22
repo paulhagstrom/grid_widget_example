@@ -15,7 +15,7 @@
 	</tr>
 	<tr>
 		<td>Read?</td>
-		<td><%= hidden_field_tag "#{container}[read]", '0' %><%= check_box_tag 'record[read]', '1', record.read %></td>
+		<td><%= hidden_field_tag "#{container}[read]", '0' %><%= check_box_tag "#{container}[read]", '1', record.read %></td>
 	</tr>
 </table>
 <%= helper_to_render_a_little_checkmark('little_checkmark') %>
