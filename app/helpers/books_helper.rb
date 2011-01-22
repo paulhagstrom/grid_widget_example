@@ -1,9 +1,9 @@
 module BooksHelper
   module ::AppSupport
-    module Controller
+    module ControllerMethods
     end
 
-    module Helper
+    module HelperMethods
 
       def helper_to_render_a_little_checkmark(id = 'default_checkmark_id')
         raw "<span id='#{id}' class='ui-icon ui-icon-check'></span>"

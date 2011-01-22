@@ -20,7 +20,7 @@
 class BaseController < ApplicationController
   layout 'grid_frame'
   include Apotomo::Rails::ControllerMethods
-  include GridWidget::Controller
+  include GridWidget::ControllerMethods
   
   # In order to avoid a bunch of essentially contentless view files, you can
   # render inline by calling super widget_name from a subclassed controller.

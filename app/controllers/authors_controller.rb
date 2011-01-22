@@ -19,6 +19,8 @@ class AuthorsController < BaseController
       def cc.custom_title(title)
         '<em>' + title + '</em>'
       end
+      # If the custom had instead been defined to take two arguments, the second
+      # would get the whole record, e.g. def cc.custom_title(title, record)
       cc.form_template = 'author_books'
     end
     root << grid_edit_widget('author') do |c|
