@@ -1,7 +1,7 @@
 GridWidgetExample::Application.routes.draw do
   
-  resources :authors, :books
-  
+  resources :authors, :books, :extended_books
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -51,7 +51,7 @@ GridWidgetExample::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
+  root :to => "authors#index"
 
   # See how all your routes lay out with "rake routes"
 

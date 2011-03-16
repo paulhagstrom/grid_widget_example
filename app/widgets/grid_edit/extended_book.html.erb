@@ -1,0 +1,42 @@
+<% content_for :before_form do %>
+	<table>
+		<tr>
+			<td>
+				<div style="border:black solid thin;padding:3px;">
+					<%= render_widget :extended_book_author %>
+				</div>
+	 		</td>
+		</tr>
+		<tr>
+			<td>
+<% end %>
+<% if record.author_id %>
+<table class="edit_table">
+	<colgroup style="width:100px;"></colgroup>
+	<colgroup style="width:300px;"></colgroup>
+	<tr>
+		<td>Title</td>
+		<td><%= text_field_tag "#{container}[title]", record.title %></td>
+	</tr>
+	<tr>
+		<td>Author</td>
+		<td><%= select_tag "#{container}[author_id]", options_from_collection_for_select(Author.all, 'id', 'name', record.author_id) %></td>
+	</tr>
+	<tr>
+		<td>Price</td>
+		<td><%= text_field_tag "#{container}[price]", record.price %></td>
+	</tr>
+	<tr>
+		<td>Read?</td>
+		<td><%= hidden_field_tag "#{container}[read]", '0' %><%= check_box_tag "#{container}[read]", '1', record.read %></td>
+	</tr>
+</table>
+<% else %>
+Add a new author using the box above, or<br />
+look up an existing author.
+<% end %>
+<% content_for :after_form do %>
+	 		</td>
+		</tr>
+	</table>
+<% end %>

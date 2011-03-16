@@ -5,5 +5,7 @@
 	</tr>	
 </table>
 <% content_for :after_form do %>
-	<%= rendered_children['book_widget'] %>
+	<div style="border:black solid thin;padding:3px;">
+		<%= render_widget :book %>
+	</div>
 <% end %>

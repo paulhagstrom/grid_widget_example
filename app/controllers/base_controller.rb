@@ -19,21 +19,19 @@
 
 class BaseController < ApplicationController
   layout 'grid_frame'
-  include Apotomo::Rails::ControllerMethods
   include GridWidget::ControllerMethods
   
   # In order to avoid a bunch of essentially contentless view files, you can
   # render inline by calling super widget_name from a subclassed controller.
   # If no widget name is provided, it will guess that the widget is called like
-  # the un-namespaced singularized controller plus _widget.
-  # That is, admin/people becomes person_widget.
-  def index(widget = nil)
-    if widget
-      render :layout => 'grid_frame', :inline => "<%= render_widget '#{widget}' %>"
+  # the un-namespaced singularized controller. That is, admin/people becomes person.
+  def index(wid = nil)
+    if wid
+      render :layout => 'grid_frame', :inline => "<%= render_widget '#{wid}' %>"
     else
       # TODO consider trying to use self.class.name.underscore.gsub(/_controller$/,'') here, if it works
       render :layout => 'grid_frame',
-        :inline => "<%= render_widget '#{params[:controller].split('/').last.singularize}_widget' %>"
+        :inline => "<%= render_widget '#{params[:controller].split('/').last.singularize}' %>"
     end
   end
     
