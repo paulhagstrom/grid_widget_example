@@ -38,6 +38,14 @@ class BooksController < BaseController
       def c.custom_author(author)
         author.split(%r{,\s*}).inject("") {|s,x| s = x + " #{s}"} rescue 'author not set!'
       end
+      def c.caption
+        "Books&mdash;#{Book.count} things you haven\\'t read."
+      end
+      # What you'd really use this for is for saving user_id, probably.
+      def c.create_attributes
+        {:title => 'Random number: ' + rand.to_s}
+      end
+      
     end
   end
   
@@ -45,5 +53,7 @@ class BooksController < BaseController
     # render inline without a template
     super
   end
+  
+  
   
 end
