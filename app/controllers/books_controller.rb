@@ -30,10 +30,10 @@ class BooksController < BaseController
       end
       # define the custom display methods
       def c.custom_price(price)
-        '<span style="font-family:monospace;">' + sprintf("%7.2f", price) + '</span>'
+        '<span style="font-family:monospace;">' + sprintf("%7.2f", price) + '</span>' rescue '[Unset]'
       end
       def c.custom_title(title)
-        '<em>' + title + '</em>'
+        '<em>' + title + '</em>' rescue '[Unset]'
       end
       def c.custom_author(author)
         author.split(%r{,\s*}).inject("") {|s,x| s = x + " #{s}"} rescue 'author not set!'

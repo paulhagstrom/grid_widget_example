@@ -13,20 +13,17 @@ class ExtendedBooksController < BaseController
     author_widget = grid_edit_widget('author', :widget_id => :extended_book_author,
         :form_only => lambda {|x| Book.find(x).author_id}) do |cc|
       cc.form_template = 'extended_book_author'
+      def cc.after_form_update(opts)
+        # TODO: IF you add a new author the filters need to be redrawn somehow.
+        # If the author was new, create a main record
+        if opts[:was_new]
+          parent.set_record 0
+          parent.record.update_attributes(:author_id => opts[:record].id)
+          parent.trigger :display_form, :id => parent.record.id
+        end
+        super(opts)
+      end
     end
-    # author_widget = widget(:author_form, :resource => 'author', :form_only => lambda {|x| Book.find(x).author_id})
-    # # overriding find_or_add_main allows for interaction with the book model once the author is set.
-    # # this could have been inside the author_form widget, but the way I designed it, the author_form
-    # # widget could be re-used for a different connection (e.g., author's agents) that belongs_to author
-    # # as well.
-    # def author_widget.find_or_add_main(options)
-    #   if options[:was_new]
-    #     book = Book.create(:author_id => options[:record].id)
-    #   else
-    #     book = Book.where(:author_id => options[:record].id).first
-    #   end
-    #   book.id
-    # end
 
     root << grid_edit_widget('book', :widget_id => :extended_book) do |c|
       c.form_template = 'extended_book'
@@ -57,13 +54,17 @@ class ExtendedBooksController < BaseController
       end
       # define the custom display methods
       def c.custom_price(price)
-        '<span style="font-family:monospace;">' + sprintf("%7.2f", price) + '</span>'
+        '<span style="font-family:monospace;">' + sprintf("%7.2f", price) + '</span>' rescue '[Unset]'
       end
       def c.custom_title(title)
-        '<em>' + title + '</em>'
+        '<em>' + title + '</em>' rescue '[Unset]'
       end
       def c.custom_author(author)
         author.split(%r{,\s*}).inject("") {|s,x| s = x + " #{s}"} rescue 'author not set!'
+      end
+      def c.after_form_update(opts)
+        opts[:reaction] = {:display_form => {:id => opts[:record].id}} if opts[:was_new]
+        super(opts)
       end
       # embed the author widget
       c.embed_widget nil, author_widget

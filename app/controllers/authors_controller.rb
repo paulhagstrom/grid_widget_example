@@ -14,10 +14,10 @@ class AuthorsController < BaseController
       cc.add_column('price', :label => 'Price (USD)', :width => 75, :sortable => true, :custom => :custom_price)
       cc.add_column('read', :width => 50, :sortable => true, :toggle => true, :custom => :custom_check)
       def cc.custom_price(price)
-        '<span style="font-family:monospace;">' + sprintf("%7.2f", price) + '</span>'
+        '<span style="font-family:monospace;">' + sprintf("%7.2f", price) + '</span>' rescue '[Unset]'
       end
       def cc.custom_title(title)
-        '<em>' + title + '</em>'
+        '<em>' + title + '</em>' rescue '[Unset]'
       end
       # If the custom above had instead been defined to take two arguments, the second
       # would get the whole record, e.g. def cc.custom_title(title, record)
