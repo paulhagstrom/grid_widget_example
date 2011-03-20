@@ -39,13 +39,24 @@ class BooksController < BaseController
         author.split(%r{,\s*}).inject("") {|s,x| s = x + " #{s}"} rescue 'author not set!'
       end
       def c.caption
+        # trigger :flash, :alert => 'Caption set!'
         "Books&mdash;#{Book.count} things you haven\\'t read."
       end
       # What you'd really use this for is for saving user_id, probably.
       def c.create_attributes
         {:title => 'Random number: ' + rand.to_s}
       end
-      
+      # Messages
+      # TODO maybe use i18n
+      def c.delete_message
+        "Book deleted."
+      end
+      def c.update_message(was_new = false)
+        was_new ? "Book added." : "Book updated."
+      end
+      def c.inplace_message(col, new_value)
+        "#{col[:label]} is now #{new_value ? 'true' : 'false'}."
+      end
     end
   end
   
