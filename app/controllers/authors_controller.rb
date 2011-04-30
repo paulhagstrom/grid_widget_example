@@ -10,7 +10,7 @@ class AuthorsController < BaseController
         :del_button => true,
         :add_button => true,
       }
-      cc.add_column('title', :width => 350, :sortable => true, :open_panel => true, :custom => :custom_title)
+      cc.add_column('title', :width => 350, :sortable => true, :open_panel => true, :custom => :custom_title, :spokesfield => true)
       cc.add_column('price', :label => 'Price (USD)', :width => 75, :sortable => true, :custom => :custom_price)
       cc.add_column('read', :width => 50, :sortable => true, :toggle => true, :custom => :custom_check)
       def cc.custom_price(price)

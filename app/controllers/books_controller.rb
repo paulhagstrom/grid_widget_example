@@ -14,7 +14,7 @@ class BooksController < BaseController
       # set includes to eager-load author so that we can use author.name as a column
       c.includes = :author
       # define the columns
-      c.add_column('title', :width => 250, :sortable => true, :open_panel => true, :custom => :custom_title)
+      c.add_column('title', :width => 250, :sortable => true, :open_panel => true, :custom => :custom_title, :spokesfield => true)
       c.add_column('price', :label => 'Price (USD)', :width => 75, :sortable => true, :custom => :custom_price)
       c.add_column('author.name', :width => 150, :sortable => true, :custom => :custom_author)
       c.add_column('read', :width => 75, :sortable => true, :toggle => true, :custom => :custom_check)
@@ -48,15 +48,15 @@ class BooksController < BaseController
       end
       # Messages
       # TODO maybe use i18n
-      def c.delete_message
-        "Book deleted."
-      end
-      def c.update_message(was_new = false)
-        was_new ? "Book added." : "Book updated."
-      end
-      def c.inplace_message(col, new_value)
-        "#{col[:label]} is now #{new_value ? 'true' : 'false'}."
-      end
+      # def c.delete_message
+      #   "Book deleted."
+      # end
+      # def c.update_message(was_new = false)
+      #   was_new ? "Book added." : "Book updated."
+      # end
+      # def c.inplace_message(col, new_value)
+      #   "#{col[:label]} is now #{new_value ? 'true' : 'false'}."
+      # end
     end
   end
   

@@ -38,7 +38,7 @@ class ExtendedBooksController < BaseController
       # set includes to eager-load author so that we can use author.name as a column
       c.includes = :author
       # define the columns
-      c.add_column('title', :width => 250, :sortable => true, :open_panel => true, :custom => :custom_title)
+      c.add_column('title', :width => 250, :sortable => true, :open_panel => true, :custom => :custom_title, :spokesfield => true)
       c.add_column('price', :label => 'Price (USD)', :width => 75, :sortable => true, :custom => :custom_price)
       c.add_column('author.name', :width => 150, :sortable => true, :custom => :custom_author)
       c.add_column('read', :width => 50, :sortable => true, :toggle => true, :custom => :custom_check)
